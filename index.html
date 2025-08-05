@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamUp Salon Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #fffafc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #f8d0e0;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #d63384;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #ffe6f0;
+      padding: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #f0c4d0;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card i {
+      font-size: 2rem;
+      color: #d63384;
+      margin-bottom: 0.5rem;
+    }
+    .booking-form {
+      background: #fdf2f6;
+      padding: 2rem;
+      max-width: 500px;
+      margin: 2rem auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .booking-form h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 1rem;
+    }
+    .booking-form input,
+    .booking-form select,
+    .booking-form button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #f0c4d0;
+      border-radius: 5px;
+    }
+    .booking-form button {
+      background: #d63384;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .booking-form button:hover {
+      background: #b72b6d;
+    }
+    .confirmation {
+      text-align: center;
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GlamUp Salon</h1>
+    <p>Your beauty, our duty!</p>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#booking">Booking</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="services" class="services">
+    <div class="card">
+      <i class="fas fa-cut"></i>
+      <h3>Haircut</h3>
+      <p>Starts at ₹300</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-spa"></i>
+      <h3>Facial</h3>
+      <p>Glow & Relax - ₹600</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-hand-sparkles"></i>
+      <h3>Manicure</h3>
+      <p>Soft Hands - ₹400</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-bath"></i>
+      <h3>Spa</h3>
+      <p>Rejuvenate - ₹1000</p>
+    </div>
+  </section>
+  <section id="booking" class="booking-form">
+    <h2>Book an Appointment</h2>
+    <form id="form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <select id="service">
+        <option value="Haircut">Haircut</option>
+        <option value="Facial">Facial</option>
+        <option value="Manicure">Manicure</option>
+        <option value="Spa">Spa</option>
+      </select>
+      <button type="submit">Book Now</button>
+    </form>
+    <p class="confirmation" id="confirmation"></p>
+  </section>
+  <footer style="
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  background: #ffe6f0;
+  color: #d63384;
+  font-weight: bold;
+  position: relative;
+">
+  Made with 💗 by Deeps
+</footer>
+<script>
+    document.getElementById('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const service = document.getElementById('service').value;
+
+      document.getElementById('confirmation').innerText =
+        `Thank you, ${name}! Your ${service} appointment is booked for ${date} at ${time}.`;
+
+      // Optional: Save in localStorage (simulate booking record)
+      localStorage.setItem('lastBooking', JSON.stringify({ name, date, time, service }));
+
+      // Clear form
+      document.getElementById('form').reset();
+    });
+  </script>
+</body>
+</html>
